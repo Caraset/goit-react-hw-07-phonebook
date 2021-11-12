@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import s from './Filter.module.css';
-import * as actions from '../../redux/actions';
-import { getFilter } from '../../redux/selectors';
+import * as actions from 'redux/actions';
+import { getFilter } from 'redux/selectors';
 
 export default function Filter() {
   const filterValue = useSelector(getFilter);

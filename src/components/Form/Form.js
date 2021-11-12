@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import s from './Form.module.css';
-import * as actions from '../../redux/actions';
-import { getContacts } from '../../redux/selectors';
+import { submitContact } from 'redux/operations';
+import { getContacts } from 'redux/selectors';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -28,7 +28,7 @@ export default function Form() {
     if (contacts.find(el => el.name === contact.name)) {
       alert(`${contact.name} is already in contacts`);
     } else {
-      dispatch(actions.submitContact(contact));
+      dispatch(submitContact(contact));
     }
 
     reset();
