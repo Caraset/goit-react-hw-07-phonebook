@@ -1,0 +1,27 @@
+.filter {
+  margin: 0 auto 5px auto;
+  padding: 15px 10px;
+  display: block;
+  width: 220px;
+  text-align: center;
+
+  border: 1px #fff solid;
+  border-radius: 15px;
+  background-color: #ffe4c4;
+}
+
+.filter__title {
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.filter__input {
+  padding: 2px 0 2px 5px;
+
+  font-family: Rubik;
+  font-size: 16px;
+
+  border-radius: 5px;
+  border: 1px solid #000;
+}
