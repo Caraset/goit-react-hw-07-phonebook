@@ -15,8 +15,6 @@ export default function Contacts() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const removeContact = id => dispatch(deleteContact(id));
-
   return (
     <>
       {loading ? (
@@ -38,7 +36,7 @@ export default function Contacts() {
                     <button
                       className={s.contacts__btn}
                       type="button"
-                      onClick={() => removeContact(contact.id)}
+                      onClick={() => dispatch(deleteContact(contact.id))}
                     >
                       Delete
                     </button>

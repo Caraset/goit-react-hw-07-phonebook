@@ -1,16 +1,18 @@
+import { createSelector } from 'reselect';
+
 export const getContacts = state => state.contacts;
 export const getFilter = state => state.filter;
 export const getLoading = state => state.loading;
 
-export const getFilteredContacts = state => {
-  const allContacts = getContacts(state);
-  const filter = getFilter(state);
+export const getFilteredContacts = createSelector(
+  [getContacts, getFilter],
+  (allContacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
 
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(
-    contact =>
-      contact.name.toLowerCase().includes(normalizedFilter) ||
-      contact.number.includes(normalizedFilter),
-  );
-};
+    return allContacts.filter(
+      contact =>
+        contact.name.toLowerCase().includes(normalizedFilter) ||
+        contact.number.includes(normalizedFilter),
+    );
+  },
+);

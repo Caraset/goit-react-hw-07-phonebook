@@ -1,22 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  submitContactRequest,
-  submitContactSuccess,
-  submitContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-  changeFilter,
-} from './actions';
+
+// ===== Для варианта со слайсом для практики =====
+// import { createReducer, createSlice } from '@reduxjs/toolkit';
+
+import { changeFilter } from './actions';
 import { combineReducers } from '@reduxjs/toolkit';
+import { fetchContacts, submitContact, deleteContact } from 'redux/operations';
 
 const contacts = createReducer([], {
-  [fetchContactsSuccess]: (_, { payload }) => payload,
-  [submitContactSuccess]: (state, { payload }) => [...state, payload],
-  [deleteContactSuccess]: (state, { payload }) =>
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [submitContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
 });
 
@@ -25,17 +19,17 @@ export const filter = createReducer('', {
 });
 
 const loading = createReducer(false, {
-  [fetchContactsRequest]: () => true,
-  [fetchContactsSuccess]: () => false,
-  [fetchContactsError]: () => false,
+  [fetchContacts.pending]: () => true,
+  [fetchContacts.fulfilled]: () => false,
+  [fetchContacts.rejected]: () => false,
 
-  [submitContactRequest]: () => true,
-  [submitContactSuccess]: () => false,
-  [submitContactError]: () => false,
+  [submitContact.pending]: () => true,
+  [submitContact.fulfilled]: () => false,
+  [submitContact.rejected]: () => false,
 
-  [deleteContactRequest]: () => true,
-  [deleteContactSuccess]: () => false,
-  [deleteContactError]: () => false,
+  [deleteContact.pending]: () => true,
+  [deleteContact.fulfilled]: () => false,
+  [deleteContact.rejected]: () => false,
 });
 
 export default combineReducers({
@@ -43,3 +37,46 @@ export default combineReducers({
   filter,
   loading,
 });
+
+// ===== Вариант со слайсом для практики =====
+
+// const phonebookSlice = createSlice({
+//   name: 'phonebook',
+//   initialState: { contacts: [], loading: false, filter: '' },
+//   extraReducers: {
+//     [fetchContacts.fulfilled]: (state, { payload }) => {
+//       state.loading = false;
+//       state.contacts = payload;
+//     },
+
+//     [submitContact.fulfilled]: (state, { payload }) => {
+//       state.contacts = [...state.contacts, payload];
+//       state.loading = false;
+//     },
+
+//     [deleteContact.fulfilled]: (state, { payload }) =>
+//       state.filter(contact => contact.id !== payload),
+
+//     [fetchContacts.pending]: state => {
+//       state.loading = true;
+//     },
+//     [submitContact.pending]: state => {
+//       state.loading = true;
+//     },
+//     [deleteContact.pending]: state => {
+//       state.loading = true;
+//     },
+
+//     [fetchContacts.rejected]: state => {
+//       state.loading = false;
+//     },
+//     [submitContact.rejected]: state => {
+//       state.loading = false;
+//     },
+//     [deleteContact.rejected]: state => {
+//       state.loading = false;
+//     },
+//   },
+// });
+
+// export default phonebookSlice.reducer;
