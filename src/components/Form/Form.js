@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import s from './Form.module.css';
-import { submitContact } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
+import { useAddContactMutation } from 'redux/phonebook';
 
 export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
+  const { data: contacts } = useSelector(getContacts);
+
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -28,7 +29,7 @@ export default function Form() {
     if (contacts.find(el => el.name === contact.name)) {
       alert(`${contact.name} is already in contacts`);
     } else {
-      dispatch(submitContact(contact));
+      addContact(contact);
     }
 
     reset();
@@ -67,9 +68,13 @@ export default function Form() {
           />
         </label>
       </label>
-      <button className={s.form__button} type="submit">
-        Add contact
-      </button>
+      {isLoading ? (
+        <h2>loading</h2>
+      ) : (
+        <button className={s.form__button} type="submit">
+          Add contact
+        </button>
+      )}
     </form>
   );
 }

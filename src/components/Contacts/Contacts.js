@@ -1,23 +1,25 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import s from './Contacts.module.css';
-import { deleteContact, fetchContacts } from 'redux/operations';
-import { getContacts, getFilteredContacts, getLoading } from 'redux/selectors';
-import { useEffect } from 'react';
+import { getFilteredContacts } from 'redux/selectors';
+
+import {
+  useGetAllContactsQuery,
+  useDeleteContactMutation,
+} from 'redux/phonebook';
 
 export default function Contacts() {
-  const contacts = useSelector(getContacts);
-  const filteredContacts = useSelector(getFilteredContacts);
-  const loading = useSelector(getLoading);
-  const dispatch = useDispatch();
+  const { data: contacts = [], isFetching } = useGetAllContactsQuery();
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const filteredContacts = useSelector(state =>
+    getFilteredContacts(state, contacts),
+  );
+
+  const [deleteContact] = useDeleteContactMutation();
 
   return (
     <>
-      {loading ? (
+      {isFetching ? (
         <h1>Loading...</h1>
       ) : (
         <div className={s.contacts}>
@@ -36,7 +38,7 @@ export default function Contacts() {
                     <button
                       className={s.contacts__btn}
                       type="button"
-                      onClick={() => dispatch(deleteContact(contact.id))}
+                      onClick={() => deleteContact(contact.id)}
                     >
                       Delete
                     </button>
