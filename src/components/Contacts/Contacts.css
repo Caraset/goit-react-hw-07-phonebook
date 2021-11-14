@@ -1,0 +1,35 @@
+.contacts {
+  margin: 0 auto;
+  padding: 20px 25px;
+  display: inline-block;
+  text-align: center;
+
+  border: 1px #fff solid;
+  border-radius: 15px;
+  background-color: #ffe4c4;
+}
+
+.contacts__nothingText {
+  font-family: Rubik;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.contacts__text {
+  margin-right: 10px;
+}
+
+.loader-container {
+  text-align: center;
+}
+
+.contacts__nothingText {
+  text-align: center;
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+  color: #fff;
+}

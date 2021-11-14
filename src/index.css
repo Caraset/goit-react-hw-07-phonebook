@@ -1,9 +1,23 @@
+:root {
+  --main-white-color: #fff;
+  --main-bg-color: #d8aed3;
+  --third-bg-color: #33accc;
+  --main-btn-color: #33accc;
+  --main-btn-color-hover: #50dce0;
+  --secondary-btn-color: #be26cc;
+  --third-btn-color: #dd40e2;
+
+  --secondary-red: #c22828;
+}
+
 body {
   margin: 0;
-  background-color: #363636;
+  min-height: 100vh;
+  /* background-color: #363636; */
   font-family: Rubik, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(135deg, #e2b0ff 10%, #9f44d3 100%);
 }
 
 ul,

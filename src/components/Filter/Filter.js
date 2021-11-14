@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import s from './Filter.module.css';
+import './Filter.css';
 import * as actions from 'redux/actions';
 import { getFilter } from 'redux/selectors';
 
@@ -11,10 +11,10 @@ export default function Filter() {
   const setFilter = e => dispatch(actions.changeFilter(e.target.value));
 
   return (
-    <div className={s.filter}>
-      <p className={s.filter__title}>Find contacts by name</p>
+    <div className="filter">
+      <span className="filter__text">Find contacts by name</span>
       <input
-        className={s.filter__input}
+        className="filter__input"
         type="text"
         name="filter"
         onChange={setFilter}

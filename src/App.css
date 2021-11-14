@@ -1,0 +1,70 @@
+.app {
+  padding: 60px;
+  text-align: center;
+}
+
+.app__title {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+
+.form-container {
+  padding: 30px 30px 30px 30px;
+  height: 240px;
+
+  background-color: var(--main-bg-color);
+  border-radius: 40px 0 0 40px;
+}
+
+.phonebook {
+  position: relative;
+  padding: 30px 20px 51px 20px;
+  min-width: 800px;
+  background-color: var(--main-bg-color);
+  border-radius: 0 40px 0 0;
+}
+
+.phonebook::after {
+  content: '';
+  display: block;
+  width: 840px;
+  height: 39px;
+  background-image: url('images/big-curve.svg');
+
+  position: absolute;
+  bottom: -39px;
+  left: 0;
+}
+
+.phonebook__container {
+  position: relative;
+  padding: 20px 60px 8px 60px;
+  margin: 0 auto;
+  min-width: 600px;
+  min-height: 182px;
+
+  background-color: var(--third-bg-color);
+  border-radius: 40px 40px 0 0;
+
+  text-align: left;
+}
+
+.phonebook__container::after {
+  content: '';
+  display: block;
+  width: 800px;
+  height: 40px;
+  background-image: url('images/smal-curve.svg');
+
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+}
+
+.bottom-curve-gen {
+  margin: 0;
+  padding: 0;
+}

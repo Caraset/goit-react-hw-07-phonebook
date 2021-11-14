@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Slide, toast } from 'react-toastify';
 
-import s from './Form.module.css';
+import './Form.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { getContacts } from 'redux/selectors';
 import { useAddContactMutation } from 'redux/phonebook';
+import SubmitButton from './SubmitButton';
 
 export default function Form() {
   const [name, setName] = useState('');
@@ -27,7 +31,11 @@ export default function Form() {
     };
 
     if (contacts.find(el => el.name === contact.name)) {
-      alert(`${contact.name} is already in contacts`);
+      toast.error(`${contact.name} is already in contacts`, {
+        position: 'top-left',
+        theme: 'colored',
+        transition: Slide,
+      });
     } else {
       addContact(contact);
     }
@@ -41,11 +49,11 @@ export default function Form() {
   }
 
   return (
-    <form className={s.form} onSubmit={onFormSubmit}>
-      <label className={s.form__label}>
-        Name
+    <form className="form" onSubmit={onFormSubmit}>
+      <label className="form__label">
+        <span className="form__label-text">Name</span>
         <input
-          className={s.form__input}
+          className="form__input"
           onChange={onInputChange}
           type="text"
           name="name"
@@ -54,10 +62,10 @@ export default function Form() {
           required
           value={name}
         />
-        <label className={s.form__label}>
-          Number
+        <label className="form__label">
+          <span className="form__label-text">Number</span>
           <input
-            className={s.form__input}
+            className="form__input"
             onChange={onInputChange}
             type="tel"
             name="number"
@@ -68,13 +76,7 @@ export default function Form() {
           />
         </label>
       </label>
-      {isLoading ? (
-        <h2>loading</h2>
-      ) : (
-        <button className={s.form__button} type="submit">
-          Add contact
-        </button>
-      )}
+      <SubmitButton loading={isLoading} />
     </form>
   );
 }

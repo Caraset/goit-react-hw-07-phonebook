@@ -1,0 +1,114 @@
+.button {
+  margin: 20px auto 0 30px;
+  display: inline-block;
+  position: relative;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 40px;
+  padding-right: 15px;
+  background-color: var(--main-btn-color);
+  border: none;
+
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 14px;
+  letter-spacing: 0.03em;
+  color: #fff;
+
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: grey;
+  color: rgb(95, 95, 95);
+  cursor: auto;
+  box-shadow: 0px 0px 22px 2px rgba(34, 60, 80, 0.2) inset;
+}
+
+.button:disabled .circle {
+  background-color: rgb(54, 54, 54);
+}
+
+.button:not(:disabled):hover {
+  background-color: var(--main-btn-color-hover);
+}
+
+.cross {
+  background-color: #fff;
+}
+
+.button__text {
+  display: inline-block;
+  width: 100px;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: -25px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-btn-color);
+  border-radius: 50%;
+}
+
+.button:not(:disabled):hover .circle {
+  background-image: linear-gradient(135deg, #3c8ce7 10%, #00eaff 100%);
+}
+
+.center {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+
+  width: 6px;
+  height: 6px;
+
+  background-color: #fff;
+}
+
+.top {
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  width: 6px;
+  height: 12px;
+
+  background-color: #fff;
+  border-radius: 50px 50px 0 0;
+}
+
+.bottom {
+  position: absolute;
+  top: 28px;
+  left: 22px;
+  width: 6px;
+  height: 12px;
+
+  background-color: #fff;
+  border-radius: 0 0 50px 50px;
+}
+
+.right {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  width: 12px;
+  height: 6px;
+
+  background-color: #fff;
+  border-radius: 0 50px 50px 0;
+}
+
+.left {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+  width: 12px;
+  height: 6px;
+
+  background-color: #fff;
+  border-radius: 50px 0 0 50px;
+}

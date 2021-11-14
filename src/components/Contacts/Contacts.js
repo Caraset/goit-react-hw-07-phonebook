@@ -1,53 +1,27 @@
-import { useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
 
-import s from './Contacts.module.css';
-import { getFilteredContacts } from 'redux/selectors';
+import './Contacts.css';
 
-import {
-  useGetAllContactsQuery,
-  useDeleteContactMutation,
-} from 'redux/phonebook';
+import { useGetAllContactsQuery } from 'redux/phonebook';
+import ContactsList from './ContactsList';
 
 export default function Contacts() {
   const { data: contacts = [], isFetching } = useGetAllContactsQuery();
 
-  const filteredContacts = useSelector(state =>
-    getFilteredContacts(state, contacts),
-  );
-
-  const [deleteContact] = useDeleteContactMutation();
-
   return (
     <>
       {isFetching ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className={s.contacts}>
-          {contacts.length === 0 ? (
-            <p className={s.contacts__nothingText}>No contacts added</p>
-          ) : (
-            <ul className={s.contacts__list}>
-              {filteredContacts.length === 0 ? (
-                <p className={s.contacts__nothingText}>Nothing found</p>
-              ) : (
-                filteredContacts.map(contact => (
-                  <li className={s.contacts__item} key={contact.id}>
-                    <p className={s.contacts__text}>
-                      {contact.name}: {contact.number}
-                    </p>
-                    <button
-                      className={s.contacts__btn}
-                      type="button"
-                      onClick={() => deleteContact(contact.id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
-          )}
+        <div className="loader-container">
+          <Loader type="ThreeDots" color="#be26cc" height={100} width={100} />
         </div>
+      ) : (
+        <>
+          {contacts.length === 0 ? (
+            <p className="contacts__nothingText">No contacts added</p>
+          ) : (
+            <ContactsList contacts={contacts} />
+          )}
+        </>
       )}
     </>
   );
